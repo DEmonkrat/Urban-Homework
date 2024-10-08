@@ -1,3 +1,4 @@
+# https://github.com/DEmonkrat/Urban-Homework/blob/main/Urban_HW_DopZadanie2.py
 n = 1
 while not (3 <= n <= 20):
     n = int(input('Введите целое число от 3 до 20 (включительно): '))
