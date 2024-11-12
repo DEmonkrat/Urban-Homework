@@ -78,7 +78,7 @@ print(single_root_words('rich', 'richiest', 'orichalcum', 'cheers', 'richies'))
 print(single_root_words('Disablement', 'Able', 'Mable', 'Disable', 'Bagel'))
 
 
-#Task 5 URBAN До задание по ркурсиям
+#Task 5 URBAN До задание по рекурсиям
 
 import types
 def flat_list_sum(list_):
@@ -126,3 +126,18 @@ def flat_list_sum(list_):
   if isinstance(list_, set): #Если элемент множество - перевести в список, раскрыть его и смотрим дальше
     return flat_list_sum(list(list_))
   else: return 0 #Для типа данных None
+
+
+# Task 6 URBAN
+from fake_math import divide as fake_divide
+from true_math import divide as true_divide
+
+result1 = fake_divide(69, 3)
+result2 = fake_divide(3, 0)
+result3 = true_divide(49, 7)
+result4 = true_divide(15, 0)
+
+print(result1)
+print(result2)
+print(result3)
+print(result4)
