@@ -6,8 +6,6 @@ class Animal:
     def __init__(self, name):
         self.name = name
 
-
-class Mammal(Animal):
     def eat(self, food):
         if food.edible:
             print(f'{self.name} съел {food.name}')
@@ -17,32 +15,24 @@ class Mammal(Animal):
             self.alive = False
 
 
-class Plant:
-    edible = False
-    def __init__(self, name):
-        self.name = name
-
-class Flower(Plant):
+class Mammal(Animal):
     pass
 
-class Fruit(Plant):
-    pass
 
+class Predator(Animal):
+    pass
 
 # ________________Plants___________________________________
 class Plant:
     edible = False
-    name = ''
-
+    def __init__(self, name):
+        self.name = name
 
 class Flower(Plant):
-    def __init__(self, name):
-        self.name = name
-
+    pass
 
 class Fruit(Plant):
-    def __init__(self, name):
-        self.name = name
+    pass
 
 
 a1 = Predator('Волк с Уолл-Стрит')
