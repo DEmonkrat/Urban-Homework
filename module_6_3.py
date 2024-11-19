@@ -50,7 +50,7 @@ class AquaticAnimal(Animal):
 # ____________PoisonousAnimal___________________
 class PoisonousAnimal(Animal):
     _DEGREE_OF_DANGER = 8
-    sound = 'RRRrrrRRRRRrrrrr'
+    sound = 'SSSsssSSSSSsssss'
 
 
 # ____________Duckbill___________________
