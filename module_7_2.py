@@ -32,3 +32,4 @@ print('Другой вариант')
 result2 = custom_write_close('test.txt', info)
 for elem in result2.items():
     print(elem)
+
