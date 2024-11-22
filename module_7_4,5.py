@@ -1,5 +1,5 @@
 import os
-from traceback import print_tb
+import shutil
 
 # Форматирование строк (НИЖЕ Файлы в операционной системе)
 # Использование %
@@ -83,9 +83,13 @@ print('Теперь увеличим размер файла')
 with open('test_size.txt', 'w') as f:
     f.write('test_size'*10**6)
 print_size(os.path.getsize('test_size.txt'), 'test_size.txt')
-# Между просим винда пишет 8.790 Мб
+# Между прочим винда пишет 8.790 Мб
 # Удалим наш БОЛЬШОЙ файл
 os.remove('test_size.txt')
 
 print('Метод os.path.dirname')
-print(os.path.dirname(r'Module_7_3_files\text.txt'))
+# Создаем папку с файлом
+os.makedirs(r'Test_dir\file.txt')
+print(os.path.dirname(r'Test_dir\file.txt'))
+# Удаляем папку со всем содержимым
+shutil.rmtree('Test_dir')
