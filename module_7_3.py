@@ -12,9 +12,9 @@ class WordsFinder:
         self.files = []
         # Далее распределяем файлы и папки по двум спискам
         for arg in args:
-            if arg.endswith('.txt'):
+            if os.path.isfile(arg) and arg.endswith('.txt'):
                 self.files.append(arg)
-            else:
+            elif os.path.isdir(arg):
                 self.folders.append(arg)
         self.all_words = {}
         pass
