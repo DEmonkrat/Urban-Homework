@@ -7,12 +7,15 @@ class Animal:
         self.name = name
 
     def eat(self, food):
-        if food.edible:
-            print(f'{self.name} съел {food.name}')
-            self.fed = True
+        if isinstance(food, Plant):
+            if food.edible:
+                print(f'{self.name} съел {food.name}')
+                self.fed = True
+            else:
+                print(f'{self.name} не стал есть {food.name}')
+                self.alive = False
         else:
-            print(f'{self.name} не стал есть {food.name}')
-            self.alive = False
+            print('Это что-то непонятное. Я это есть не буду !!!!')
 
 
 class Mammal(Animal):
@@ -32,7 +35,7 @@ class Flower(Plant):
     pass
 
 class Fruit(Plant):
-    pass
+    edible = True
 
 
 a1 = Predator('Волк с Уолл-Стрит')
@@ -49,6 +52,7 @@ print('Сытость животного ', a2.name, ' :', a2.fed)
 print()
 a1.eat(p1)
 a2.eat(p2)
+a2.eat('Жаркое')
 print('Состояние животного ', a1.name, ' :', a1.alive)
 print('Сытость животного ', a2.name, ' :', a2.fed)
 
