@@ -2,21 +2,23 @@ class IncorrectVinNumber(Exception):
     def __init__(self, message, extra_info):
         self.message = message
         self.extra_info = extra_info
+        super().__init__()
 
 
 class IncorrectCarNumbers(Exception):
     def __init__(self, message, extra_info):
         self.message = message
         self.extra_info = extra_info
+        super().__init__()
 
 
 class Car:
     def __init__(self, model, vin_number, numbers):
         self.model = model
         if self.__is_valid_vin(vin_number):
-            self.vin_number = vin_number
+            self.__vin_number = vin_number
         if self.__is_valid_numbers(numbers):
-            self.numbers = numbers
+            self.__numbers = numbers
 
     def __is_valid_vin(self, vin_number):
         if not isinstance(vin_number, int):
