@@ -2,14 +2,14 @@ class IncorrectVinNumber(Exception):
     def __init__(self, message, extra_info):
         self.message = message
         self.extra_info = extra_info
-        super().__init__()
+        super().__init__(message)
 
 
 class IncorrectCarNumbers(Exception):
     def __init__(self, message, extra_info):
         self.message = message
         self.extra_info = extra_info
-        super().__init__()
+        super().__init__(message)
 
 
 class Car:
