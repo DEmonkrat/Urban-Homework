@@ -18,7 +18,7 @@ def get_advanced_writer(file_name):
     return write_everything
 
 
-name_f = 'example_file.txt'
+name_f: str = 'example_file.txt'
 full_write = get_advanced_writer(name_f)
 full_write('Это строчка', ['А', 'это', 'уже', 'число', 5, 'в', 'списке'])
 
@@ -33,6 +33,7 @@ class MysticBall:
     def __call__(self):
         if len(self.words):
             return choice(self.words)
+
 
 mball = MysticBall('Да', 'Нет', 'Наверное')
 print(mball())
