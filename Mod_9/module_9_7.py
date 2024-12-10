@@ -4,7 +4,7 @@ def is_prime(func):
         if result > 1:
             for i in range(2, result):
                 if result % i == 0:
-                    return f'Число {result} не является простым'
+                    return f'Число {result} составное'
                 return f'Число {result} простое'
         else:
             return f'Правила простых чисел не применимы с числам меньше 1'
