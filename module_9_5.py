@@ -5,6 +5,7 @@ class StepValueError(ValueError):
 class StartStopValueError(ValueError):
     pass
 
+
 class Iterator:
     def __init__(self, stop, start=0, step=1):  # Сделал как в range
         self.stop = stop
@@ -13,8 +14,12 @@ class Iterator:
             raise StepValueError('Шаг не может быть равен 0')
         else:
             self.step = step
-        if (self.step > 0 and self.stop <= self.start) or (self.step < 0 and self.stop >= self.start):
-            raise StartStopValueError('Неверные границы последовательности')
+        if self.step > 0 and self.stop <= self.start:
+            raise StartStopValueError('Неверные границы последовательности',
+                                      'Конечная точка меньше начальной при положительном шаге')
+        elif self.step < 0 and self.stop >= self.start:
+            raise StartStopValueError('Неверные границы последовательности',
+                                      'Конечная точка больше начальной при отрицательном шаге')
 
     def __iter__(self):
         self.pointer = self.start
@@ -27,7 +32,7 @@ class Iterator:
         elif self.step < 0 and self.pointer >= self.stop:
             return self.pointer
         else:
-            print('Конец последовательности')
+            print('Конец последовательности', end='\n\n')
             raise StopIteration
 
 
@@ -44,14 +49,44 @@ for num in iter11:
     print(num)
 
 # Далее идут Итераторы с ошибками
-iter2 = Iterator(10, 20)
-for num in iter2:
-    print(num)
+try:
+    iter2 = Iterator(10, 20)
+except StepValueError as err:
+    for arg in err.args:
+        print(arg)
+    print()
+except StartStopValueError as err:
+    for arg in err.args:
+        print(arg)
+    print()
+else:
+    for num in iter2:
+        print(num)
 
-iter3 = Iterator(20, 10, -1)
-for num in iter3:
-    print(num)
+try:
+    iter3 = Iterator(20, 10, -1)
+except StepValueError as err:
+    for arg in err.args:
+        print(arg)
+    print()
+except StartStopValueError as err:
+    for arg in err.args:
+        print(arg)
+    print()
+else:
+    for num in iter3:
+        print(num)
 
-iter4 = Iterator(20, 10, 0)
-for num in iter4:
-    print(num)
+try:
+    iter4 = Iterator(20, 10, 0)
+except StepValueError as err:
+    for arg in err.args:
+        print(arg)
+    print()
+except StartStopValueError as err:
+    for arg in err.args:
+        print(arg)
+    print()
+else:
+    for num in iter3:
+        print(num)
