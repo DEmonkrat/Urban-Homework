@@ -67,7 +67,7 @@ for cur_dir, dirs, files in os.walk(directory):
 
 import time
 print('Метод os.path.getmtime')
-file_name = 'module_4_1.py'
+file_name = '../module_4_1.py'
 file_time = time.localtime(os.path.getmtime(file_name))
 print(f'Время последней модификации файла "{file_name}":')
 print(*file_time[:3], sep='-', end=' ')
