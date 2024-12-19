@@ -49,10 +49,10 @@ class Cafe:
     def serv_guests(self):
         while not self.queue.empty() or any(self.tables):  # Проверяем на не пустую очередь или не пустые столы
             for i in range(len(self.tables)):
-                if not self.tables[i].guest.is_alive():
-                    self.tables[i].guest = None
+                if self.tables[i].guest is not None and not self.tables[i].guest.is_alive():
                     print(f'{self.tables[i].guest.name} покушал(-а) и ушёл(ушла)')
-                    print(f'Стол номер {self.tables[i].number} свободен')
+                    self.tables[i].guest = None
+                    print(f'Стол номер {self.tables[i].number} освободился')
                     if not self.queue.empty():
                         self.tables[i].guest = self.queue.get()
                         print(
