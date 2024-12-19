@@ -10,15 +10,14 @@ class Bank():
 
     def deposit(self):
         for _ in range(100):
-            refill = randint(50, 100)   # Специально поменьше сделал, чтобы точно срабатывала блокировка
+            refill = randint(50, 100)  # Специально поменьше сделал, чтобы точно срабатывала блокировка
             self.__bal_change(refill)
-            print(f'Пополнение на: {refill}. Баланс: {self.__bal_check()}')
             if self.__bal_check() >= 500 and self.lock.locked():
                 self.lock.release()
                 print('Поток разблокирован')
             time.sleep(0.001)
         if self.lock.locked():
-            self.lock.release() # Отпускаем замок, если исчерпали range и замок заблокирован
+            self.lock.release()  # Отпускаем замок, если исчерпали range и замок заблокирован
             print('Поток разблокирован')
             print('Поток пополнения иссяк (((')
 
@@ -26,18 +25,11 @@ class Bank():
         for _ in range(100):
             removal = randint(50, 500)
             print(f'Запрос на снятие: {removal}')
-            if self.lock.locked():
-                print(threading.current_thread())
-                self.lock.acquire()
-            else:
-                print('Снятие. Замок открыт')
-
             if (self.__bal_check() - removal) >= 0:
                 self.__bal_change(-removal)
-                print(f'Снятие: {removal}. Баланс: {self.__bal_check()}')
             else:
                 print('Запрос отклонён, недостаточно средств')
-                if threading.active_count() > 2:
+                if threading.active_count() > 2:    # Ставим замок только если есть поток пополнения (т.е. их больше 2)
                     self.lock.acquire()
                     print('Поток заблокирован. Потоков:', threading.active_count())
             time.sleep(0.001)
@@ -50,6 +42,10 @@ class Bank():
     def __bal_change(self, by):
         with self.b_lock:
             self.balance += by
+            if by > 0:
+                print(f'Пополнение на: {by}. Баланс: {self.balance}')
+            else:
+                print(f'Снятие: {by}. Баланс: {self.balance}')
 
 
 bk = Bank()
