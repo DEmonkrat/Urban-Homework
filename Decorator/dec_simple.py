@@ -1,12 +1,10 @@
 import functools
 import inspect
 
-i_deb =1
 
 def debug(func):
     global i_deb
-    print(f'I am debug ({i_deb})')
-    i_deb += 1
+    print('I am debug')
 
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
