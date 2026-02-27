@@ -1,14 +1,19 @@
 import functools
 import inspect
 
+i_deb = 1
 
 def debug(func):
     global i_deb
-    print('I am debug')
+    print(f'I am debug. Num {i_deb}')
+    i_deb+=1
+    i_wrap=1
 
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
-        print('I am wrapper')
+        nonlocal i_wrap
+        print(f'I am wrapper. Num {i_wrap}')
+        i_wrap += 1
         print(f'    Func name: {func.__name__}')
         print('    Args:')
         i=1
@@ -40,4 +45,5 @@ add_2(b=1, a=6)
 print()
 print("_____________________________________________________________")
 print()
+add_2(14, 90)
 add_2(14, 90)
